@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Novia</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5e6e8;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .card-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 90%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculto inicialmente */
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            height: 50%;
+            border-radius: 10px;
+        }
+        .active {
+            display: block;
+            animation: fade 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: 0.4;}
+            to {opacity: 1;}
+        }
+        .message {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            display: none; /* Oculto inicialmente */
+        }
+        .player {
+            margin-top: 20px;
+            display: none; /* Oculto inicialmente */
+        }
+        .left-text {
+            font-size: 1em; /* Tamaño de letra grande */
+            font-weight: red; /* Texto en negritas */
+            font-style: italic; /* Texto en cursiva */
+            text-align: left; /* Alineado a la izquierda */
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="card-container">
+        <img src="ca.png" alt="Carta" class="card">
+        <p><button id="open-button" style="font-size: 1.2em; padding: 10px 20px;">Abrir</button></p>
+    </div>
+
+    <div class="slideshow-container">
+
+        <div class="slide">
+            <img class="slides" src="1a.jpeg" alt="Foto 1">
+            <div class="message">Te amo ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="2a.jpeg" alt="Foto 2">
+            <div class="message">Te quiero ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="3a.jpeg" alt="Foto 3">
+            <div class="message">Mi vida ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="4a.jpeg" alt="Foto 3">
+            <div class="message">Mi niña ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="7a.jpeg" alt="Foto 3">
+            <div class="message">Mi esposa ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="5a.jpeg" alt="Foto 3">
+            <div class="message">Mi reina ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="6a.jpeg" alt="Foto 3">
+            <div class="message">Mi novia ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="7a.jpeg" alt="Foto 3">
+            <div class="message">El amor de mi vida ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="8a.jpeg" alt="Foto 3">
+            <div class="message">Mi felicidad ❤</div>
+        </div>
+        <div class="slide">
+            <img class="slides" src="9a.jpeg" alt="Foto 3">
+            <div class="message">Mi compañera de vida ❤</div>
+        </div>
+    </div>
+    
+    
+    <div class="player">
+        <audio id="audio" autoplay>
+            <source src="r1.mp3" type="audio/mpeg">
+            Tu navegador no soporta la etiqueta de audio.
+        </audio>
+    </div>
+ <div class="left-text">Para:Airis  De: El niño que esta perdidamente enamorado de ti solo te pide que no le falles </div>
+    <script>
+        document.getElementById('open-button').addEventListener('click', function() {
+            document.getElementById('card-container').style.display = 'none';
+            document.querySelector('.slideshow-container').style.display = 'block';
+            document.querySelector('.player').style.display = 'block';
+
+            let audio = document.getElementById('audio');
+            audio.muted = false;
+            audio.play().then(() => {
+                console.log('Reproducción automática iniciada');
+            }).catch(error => {
+                console.log('La reproducción automática fue impedida:', error);
+            });
+
+            showSlides();
+        });
+
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].querySelector('.slides').classList.remove("active");
+                slides[i].querySelector('.message').style.display = 'none';
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex - 1].querySelector('.slides').classList.add("active");
+            slides[slideIndex - 1].querySelector('.message').style.display = 'block';
+            setTimeout(showSlides, 3000); // Cambiar imagen cada 3 segundos
+        }
+    </script>
+</body>
+</html>
